@@ -1,0 +1,12 @@
+.item{
+    display: flex;
+}
+
+.avatar img{
+    width: 80px;
+    border-radius: 40px;
+}
+
+.friendInfo{
+
+}
