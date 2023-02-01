@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -15,11 +14,11 @@ function App(props) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar data={props.constans}/>
+                <Navbar data={props.navbar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path='/dialogs' element={<Dialogs dialogs={props.info.content.dialogsPage.dialogs} messages={props.info.content.dialogsPage.messages} name='dialogs'/>}/>
-                        <Route path='/profile' element={<Profile posts={props.info.content.profilePage.posts}/>}/>
+                        <Route path='/profile' element={<Profile addPost={props.addPost} posts={props.info.content.profilePage.posts}/>}/>
                         <Route path='/news' element={<News name='news'/>}/>
                         <Route path='/music' element={<Music name='music'/>}/>
                         <Route path='/settings' element={<Settings name='settings'/>}/>

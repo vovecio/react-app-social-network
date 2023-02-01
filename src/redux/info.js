@@ -1,4 +1,4 @@
-const info = {
+let info = {
     content: {
         dialogsPage: {
             dialogs: [
@@ -84,4 +84,7 @@ const info = {
     }
 };
 
+export let addPost = (postMessage) => {
+    info.content.profilePage.posts.push({id: info.content.profilePage.posts.length + 1, text: postMessage, likesCount: 0});
+}
 export default info;
