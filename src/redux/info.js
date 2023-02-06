@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 let info = {
     content: {
         dialogsPage: {
@@ -86,5 +88,6 @@ let info = {
 
 export let addPost = (postMessage) => {
     info.content.profilePage.posts.push({id: info.content.profilePage.posts.length + 1, text: postMessage, likesCount: 0});
+    rerenderEntireTree(info);
 }
 export default info;
