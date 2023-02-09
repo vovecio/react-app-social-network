@@ -1,14 +1,14 @@
 import classes from './Dialogs.module.css'
 import DialogItems from "./DialogItems/DialogItems";
-import Messages from "./Messages/Messages";
+import React from "react";
+
 function Dialogs(props){
+
 
     return(
         <div className={classes.dialogs}>
-            <DialogItems dialogs={props.dialogs}/>
-            <Messages messages={props.messages}/>
+            <DialogItems addMessage={props.addMessage} updateMessageText={props.updateMessageText} dialogs={props.dialogs}/>
         </div>
-
     )
 }
 

@@ -6,39 +6,65 @@ let info = {
             dialogs: [
                 {
                     id: 1,
-                    name: 'Cobra'
+                    name: 'Cobra',
+                    messages: [
+                        {
+                            id: 1,
+                            message: 'Hi'
+                        },
+                        {
+                            id: 2,
+                            message: 'Hello'
+                        }
+                    ],
+                    messageText: 'Привет Cobra'
                 },
                 {
                     id: 2,
-                    name: 'Dan'
+                    name: 'Dan',
+                    messages: [
+                        {
+                            id: 1,
+                            message: 'Hi'
+                        },
+                        {
+                            id: 2,
+                            message: 'Hello'
+                        }
+                    ],
+                    messageText: 'Привет Dan'
                 },
                 {
                     id: 3,
-                    name: 'Gerox'
+                    name: 'Gerox',
+                    messages: [
+                        {
+                            id: 1,
+                            message: 'Hi'
+                        },
+                        {
+                            id: 2,
+                            message: 'Hello'
+                        }
+                    ],
+                    messageText: 'Привет Gerox'
                 },
                 {
                     id: 4,
-                    name: 'Porf'
+                    name: 'Porf',
+                    messages: [
+                        {
+                            id: 1,
+                            message: 'Hi'
+                        },
+                        {
+                            id: 2,
+                            message: 'Hello'
+                        }
+                    ],
+                    messageText: 'Привет Porf'
                 }
-            ],
-            messages: [
-                {
-                    id: 1,
-                    message: 'Hi'
-                },
-                {
-                    id: 2,
-                    message: 'Hello'
-                },
-                {
-                    id: 3,
-                    message: 'Kaif'
-                },
-                {
-                    id: 4,
-                    message: 'Guest'
-                }
-            ],
+            ]
         },
         profilePage: {
             posts: [
@@ -62,7 +88,8 @@ let info = {
                     text: 'Bad guy',
                     likesCount: 123
                 },
-            ]
+            ],
+            newPostText: 'it-kamasutra'
         },
         friendsPage: {
             friends: [
@@ -86,8 +113,30 @@ let info = {
     }
 };
 
-export let addPost = (postMessage) => {
-    info.content.profilePage.posts.push({id: info.content.profilePage.posts.length + 1, text: postMessage, likesCount: 0});
+export let addPost = (message) => {
+    info.content.profilePage.posts.push({id: info.content.profilePage.posts.length + 1, text: message, likesCount: 0});
+    info.content.profilePage.newPostText = '';
     rerenderEntireTree(info);
 }
+
+export let updateNewPostText = (newText) => {
+    info.content.profilePage.newPostText = newText;
+    rerenderEntireTree(info);
+}
+
+export let addMessage = (dialogId, newText) => {
+    let messages = info.content.dialogsPage.dialogs.find(x => x.id === dialogId).messages;
+    messages.push({
+        id: messages.length + 1,
+        message: newText
+    });
+    rerenderEntireTree(info);
+}
+
+export let updateMessageText = (dialogId, newText) => {
+    let dialog = info.content.dialogsPage.dialogs.find(x => x.id === dialogId)
+    dialog.messageText = newText;
+    rerenderEntireTree(info);
+}
+
 export default info;

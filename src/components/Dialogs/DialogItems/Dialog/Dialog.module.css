@@ -1,1 +1,11 @@
-.dialog {}
+.dialogContainer {
+    display: flex;
+    justify-content: normal;
+}
+
+.dialog{}
+
+.messageTextContainer{
+    display: flex;
+    justify-content: normal;
+}
