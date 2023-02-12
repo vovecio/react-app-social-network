@@ -20,11 +20,10 @@ function App(props) {
                         <Route path='/dialogs'
                                element=
                                    {<Dialogs
-                                       addMessage={props.addMessage}
-                                       updateMessageText={props.updateMessageText}
+                                       store={props.store}
                                        dialogs={props.info.content.dialogsPage.dialogs}
                                        name='dialogs'/>}/>
-                        <Route path='/profile' element={<Profile addPost={props.addPost} updatePostText={props.updatePostText} profilePage={props.info.content.profilePage}/>}/>
+                        <Route path='/profile' element={<Profile store={props.store} profilePage={props.info.content.profilePage}/>}/>
                         <Route path='/news' element={<News name='news'/>}/>
                         <Route path='/music' element={<Music name='music'/>}/>
                         <Route path='/settings' element={<Settings name='settings'/>}/>

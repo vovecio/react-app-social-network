@@ -5,17 +5,16 @@ import React from "react";
 
 
 function Dialog(props){
-    debugger
     const path = `dialog/${props.id}`;
     const newTextMessage = React.createRef();
 
     let addMessageComponent = () => {
-        props.addMessage(props.id, props.messageText);
+        props.store.addMessage(props.id, props.messageText);
     }
 
     let updateMessageTextComponent = () => {
         let text = newTextMessage.current.value;
-        props.updateMessageText(props.id, text);
+        props.store.updateMessageText(props.id, text);
     }
     return(
         <div className={classes.dialogContainer}>

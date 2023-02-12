@@ -7,7 +7,7 @@ function DialogItems(props) {
     return (
         <div className={classes.dialogsItems}>
             {props.dialogs.map(x =>
-                <Dialog messageText={x.messageText} addMessage={props.addMessage} updateMessageText={props.updateMessageText} id={x.id} name={x.name} messages={x.messages}/>
+                <Dialog messageText={x.messageText} store={props.store} id={x.id} name={x.name} messages={x.messages}/>
             )}
         </div>
     )
