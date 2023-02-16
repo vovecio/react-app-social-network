@@ -6,12 +6,12 @@ import Post from './Post/Post';
 function MyPosts(props) {
     let newPostElement = React.createRef();
     let addPostComponent = () => {
-        props.store.addPost(props.newPostText);
+        props.store.dispatch({type: 'ADD-POST', newText: props.newPostText});
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.store.updateNewPostText(text);
+        props.store.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
     }
     return (
         <div className={classes.allPosts}>
@@ -22,6 +22,4 @@ function MyPosts(props) {
         </div>
     )
 }
-
-
 export default MyPosts

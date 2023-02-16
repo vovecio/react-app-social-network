@@ -9,12 +9,12 @@ function Dialog(props){
     const newTextMessage = React.createRef();
 
     let addMessageComponent = () => {
-        props.store.addMessage(props.id, props.messageText);
+        props.store.dispatch({type: 'ADD-MESSAGE', dialogId: props.id, newText: props.messageText});
     }
 
     let updateMessageTextComponent = () => {
         let text = newTextMessage.current.value;
-        props.store.updateMessageText(props.id, text);
+        props.store.dispatch({type: 'UPDATE-MESSAGE-TEXT', dialogId: props.id, newText: text});
     }
     return(
         <div className={classes.dialogContainer}>

@@ -117,17 +117,19 @@ let store = {
     subscribe(observer){
         this._subscriber = observer;
     },
-    addPost(message){
-        this._state.content.profilePage.posts.push({id: this._state.content.profilePage.posts.length + 1, text: message, likesCount: 0});
+    getState(){
+        return this._state;
+    },
+    _addPost(){
+        this._state.content.profilePage.posts.push({id: this._state.content.profilePage.posts.length + 1, text: this._state.content.profilePage.newPostText, likesCount: 0});
         this._state.content.profilePage.newPostText = '';
         this._subscriber(this.getState());
     },
-    updateNewPostText(newText){
+    _updateNewPostText(newText){
         this._state.content.profilePage.newPostText = newText;
         this._subscriber(this.getState());
     },
-    addMessage(dialogId, newText){
-        debugger
+    _addMessage(dialogId, newText){
         let messages =  this._state.content.dialogsPage.dialogs.find(x => x.id === dialogId).messages;
         messages.push({
             id: messages.length + 1,
@@ -135,13 +137,21 @@ let store = {
         });
         this._subscriber(this.getState());
     },
-    updateMessageText(dialogId, newText){
+    _updateMessageText(dialogId, newText){
         let dialog = this._state.content.dialogsPage.dialogs.find(x => x.id === dialogId)
         dialog.messageText = newText;
         this._subscriber(this.getState());
     },
-    getState(){
-        return this._state;
+    dispatch(action){
+        if(action.type === 'ADD-POST'){
+            this._addPost();
+        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._updateNewPostText(action.newText)
+        }else if(action.type === 'ADD-MESSAGE'){
+            this._addMessage(action.dialogId, action.newText)
+        }else if(action.type === 'UPDATE-MESSAGE-TEXT'){
+            this._updateMessageText(action.dialogId, action.newText)
+        }
     }
 }
 export default store;
