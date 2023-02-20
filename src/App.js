@@ -7,7 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import Friends from "./components/Friends/Friends";
+import FriendsContainer from "./components/Friends/FriendsContainer";
 
 function App(props) {
     return (
@@ -17,17 +17,12 @@ function App(props) {
                 <Navbar data={props.navbar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/dialogs'
-                               element=
-                                   {<Dialogs
-                                       store={props.store}
-                                       dialogs={props.info.content.dialogsPage.dialogs}
-                                       name='dialogs'/>}/>
-                        <Route path='/profile' element={<Profile store={props.store} profilePage={props.info.content.profilePage}/>}/>
+                        <Route path='/dialogs' element={<Dialogs name='dialogs'/>}/>
+                        <Route path='/profile' element={<Profile/>}/>
                         <Route path='/news' element={<News name='news'/>}/>
                         <Route path='/music' element={<Music name='music'/>}/>
                         <Route path='/settings' element={<Settings name='settings'/>}/>
-                        <Route path='/friends' element={<Friends friends={props.info.content.friendsPage.friends}/>}/>
+                        <Route path='/friends' element={<FriendsContainer/>}/>
                     </Routes>
                 </div>
             </div>

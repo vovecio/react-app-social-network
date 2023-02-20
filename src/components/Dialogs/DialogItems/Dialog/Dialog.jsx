@@ -3,18 +3,17 @@ import {NavLink} from "react-router-dom";
 import Messages from "../../Messages/Messages";
 import React from "react";
 
-
 function Dialog(props){
     const path = `dialog/${props.id}`;
     const newTextMessage = React.createRef();
 
     let addMessageComponent = () => {
-        props.store.dispatch({type: 'ADD-MESSAGE', dialogId: props.id, newText: props.messageText});
+        props.addMessage(props.id, props.messageText);
     }
 
     let updateMessageTextComponent = () => {
         let text = newTextMessage.current.value;
-        props.store.dispatch({type: 'UPDATE-MESSAGE-TEXT', dialogId: props.id, newText: text});
+        props.updateMessageText(props.id, text);
     }
     return(
         <div className={classes.dialogContainer}>
@@ -30,4 +29,4 @@ function Dialog(props){
     )
 }
 
-export default Dialog
+export default Dialog;

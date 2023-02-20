@@ -1,3 +1,7 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import friendsReducer from "./friends-reducer";
+
 let store = {
     _state: {
         content: {
@@ -111,47 +115,20 @@ let store = {
             }
         }
     },
-    _subscriber(){
+    _subscriber() {
 
     },
-    subscribe(observer){
+    subscribe(observer) {
         this._subscriber = observer;
     },
-    getState(){
+    getState() {
         return this._state;
     },
-    _addPost(){
-        this._state.content.profilePage.posts.push({id: this._state.content.profilePage.posts.length + 1, text: this._state.content.profilePage.newPostText, likesCount: 0});
-        this._state.content.profilePage.newPostText = '';
-        this._subscriber(this.getState());
-    },
-    _updateNewPostText(newText){
-        this._state.content.profilePage.newPostText = newText;
-        this._subscriber(this.getState());
-    },
-    _addMessage(dialogId, newText){
-        let messages =  this._state.content.dialogsPage.dialogs.find(x => x.id === dialogId).messages;
-        messages.push({
-            id: messages.length + 1,
-            message: newText
-        });
-        this._subscriber(this.getState());
-    },
-    _updateMessageText(dialogId, newText){
-        let dialog = this._state.content.dialogsPage.dialogs.find(x => x.id === dialogId)
-        dialog.messageText = newText;
-        this._subscriber(this.getState());
-    },
-    dispatch(action){
-        if(action.type === 'ADD-POST'){
-            this._addPost();
-        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
-            this._updateNewPostText(action.newText)
-        }else if(action.type === 'ADD-MESSAGE'){
-            this._addMessage(action.dialogId, action.newText)
-        }else if(action.type === 'UPDATE-MESSAGE-TEXT'){
-            this._updateMessageText(action.dialogId, action.newText)
-        }
+    dispatch(action) {
+        this._state.content.profilePage = profileReducer(this._state.content.profilePage, action);
+        this._state.content.dialogsPage = dialogsReducer(this._state.content.dialogsPage, action);
+        this._state.content.friendsPage = friendsReducer(this._state.content.friendsPage, action);
+        this._subscriber(this.getState())
     }
 }
 export default store;
